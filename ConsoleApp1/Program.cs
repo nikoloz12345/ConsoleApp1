@@ -9,31 +9,30 @@ namespace ConsoleApp6
         public bool arrival { get; set; } = false;
         public bool i_do_not_care_about_fine { get; set; } = false;
         public int fine { get; set; }
-        public enum profession { Firefighters, Teachers, Doctors, Nurses, Postal_Workers, Armed_Forces, student }
+        public profession PersonProffesion { get; set; }
+       
 
     }
+       public enum profession { Firefighter, Teacher, Doctor, Nurse, Postal_Worker, Armed_Force, student }
     class bus
     {
         public float price_of_ticket { get; private set; } = 0.5f;
         public string advertisment1 = "there is no seats in here";
         public string advertisment2 = "there is seats in here, come in";
-        public person.profession profession;
+        public profession profession;
         public person person;
-        public static int humans_count { get; private set; }
-        public void get_profession(person.profession profession)
+        public  int humans_count { get; private set; }
+        public void get_profession( profession profession)
         {
             this.profession = profession;
-            if (profession == person.profession.Doctors || profession == person.profession.Armed_Forces || profession == person.profession.Firefighters)
+            if (profession ==profession.Doctor || profession == profession.Armed_Force || profession == profession.Firefighter)
             {
                 price_of_ticket = 0.2f;
             }
         }
-        public void get_person(person person)
+        public void about_person(person person)
         {
             this.person = person;
-        }
-        public void about_person()
-        {
             if (person.want_to_climb_in_bus == true && humans_count >= 20)
             {
                 Console.WriteLine(advertisment1);
@@ -74,9 +73,8 @@ namespace ConsoleApp6
 
             first.i_do_not_care_about_fine = true;
             bus bus = new bus();
-            bus.get_person(first);
-            bus.about_person();
-            bus.get_profession(person.profession.Armed_Forces);
+            bus.about_person(first);
+            bus.get_profession(profession.Armed_Force);
             Console.WriteLine(bus.humans_count);
             Console.WriteLine(bus.price_of_ticket);
             Console.WriteLine("{0} {1}your fine is {2} connect us", first.name, first.lastname, first.fine);
